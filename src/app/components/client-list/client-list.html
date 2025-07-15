@@ -1,0 +1,67 @@
+<div class="relative overflow-x-auto p-3">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        Société
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Contact
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Email
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Téléphone
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Actions
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      @for( c of clients();track c.id;){
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+          <td class="px-6 py-4">
+            {{c.companyName}}
+          </td>
+          <td>
+            {{ c.firstName }} {{c.lastName }}
+          </td>
+          <td>
+            {{ c.email }}
+          </td>
+          <td>
+            {{ c.phone }}
+          </td>
+          <td class="space-x-3">
+            <button [routerLink]="['/clients',c.id]" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-white rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-gray-300 ">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              </svg>
+            </button>
+            <button [routerLink]="['/clients/update',c.id]"  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-white rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-gray-300 ">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 5V4a1 1 0 0 0-1-1H8.914a1 1 0 0 0-.707.293L4.293 7.207A1 1 0 0 0 4 7.914V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5M9 3v4a1 1 0 0 1-1 1H4m11.383.772 2.745 2.746m1.215-3.906a2.089 2.089 0 0 1 0 2.953l-6.65 6.646L9 17.95l.739-3.692 6.646-6.646a2.087 2.087 0 0 1 2.958 0Z"/>
+              </svg>
+            </button>
+            <app-modal-delete (onDeleteClient)="deleteClient($event)"  [clientIdRaw]="c.id" />
+          </td>
+
+        </tr>
+        }
+    </tbody>
+  </table>
+    <section class="flex flex-row justify-center  m-3">
+      <div class="flex items-center justify-center space-x-6">
+        <button [ngClass]="{'cursor-not-allowed ' : currentPage() <= 1, 'hover:text-blue-700 hover:bg-gray-100' : currentPage() > 1}" [disabled]="currentPage() <= 1" (click)="onPageChange(currentPage() - 1)" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Précédent</button>
+           <span> Page {{currentPage() }} / {{totalPages()}}</span>
+        <button [ngClass]="{'cursor-not-allowed ' : currentPage() >= totalPages(), 'hover:text-blue-700 hover:bg-gray-100' : currentPage() < totalPages()}"  [disabled]="currentPage() >= totalPages()" (click)="onPageChange(currentPage() + 1)" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Suivant</button>
+      </div>
+    </section>
+</div>
+
+
+
+
