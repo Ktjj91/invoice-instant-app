@@ -3,11 +3,11 @@ import {AuthService} from '../../services/authservice/auth-service';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CredentialI} from '../../interfaces/credential-i';
 import {NgClass} from '@angular/common';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })

@@ -10,9 +10,11 @@ import {CreateClient} from './components/create-client/create-client';
 import {ClientUpdate} from './components/client-update/client-update';
 import {CreateInvoice} from './components/create-invoice/create-invoice';
 import {InvoiceUpdate} from './components/invoice-update/invoice-update';
+import {Register} from './components/register/register';
 
 export const routes: Routes = [
   {path: "login", component: Login},
+  {path: "register", component: Register},
   {
     path: "invoices",
     canActivate: [authGuardGuard],
