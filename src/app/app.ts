@@ -2,10 +2,11 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {initFlowbite} from 'flowbite';
 import {AuthService} from './services/authservice/auth-service';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, NgClass],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
